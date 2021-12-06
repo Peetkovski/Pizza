@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body{
+            background-color: #8f0000;
+        }
+        #nav{
+            margin-top: 40px;
+            width: 61%;
+            height: 50px;
+            color: white;
+            float: right;
+        }
+        .buttons{
+            font-family: Impact, fantasy;
+            float: left;
+            font-size: 140%;
+            padding-right: 40px;
+        }
+        #logo{
+            width: 30%;
+            font-family: Impact, fantasy;
+            text-align: center;
+            color: white;
+        }
+        a, a:hover, a:focus, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        tr, td{
+            font-family: Andale Mono, monospace;
+        }
+        table{
+
+        }
+        #menu{
+            width: 30%;
+            margin: auto;
+            border-style: solid;
+            border-radius: 5px;
+            float: right;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="logo"><h1>Pizzeria u Konga</h1> </div>
+
+<div id="nav">
+
+    <div class="buttons"> <a th:href="@{home}"> STRONA GłÓWNA  </a>   </div>
+
+    <div class="buttons"> ZAMÓW PIZZE </div>
+
+    <div class="buttons"> KONTAKT </div>
+
+    <div class="buttons"> OPINIE </div>
+
+
+
+</div>
+
+
+<div id="menu">
+<table>
+
+    <tr>
+        <th>Nazwa Pizzy</th>
+        <th>Cena</th>
+
+    </tr>
+
+
+    <tr th:each="p : ${GetPizza}">
+        <td th:text="${p.getName()}"></td>
+        <td th:text="${p.getPrice()}"></td>
+
+    </tr>
+
+
+    </tr>
+
+
+
+</table>
+
+
+</div>
+</body>
+</html>

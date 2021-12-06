@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body{
+            background-color: #8f0000;
+        }
+        #nav{
+            margin-top: 40px;
+            width: 61%;
+            height: 50px;
+            color: white;
+            float: right;
+        }
+        .buttons{
+            font-family: Impact, fantasy;
+            float: left;
+            font-size: 140%;
+            padding-right: 40px;
+        }
+        #logo{
+            width: 30%;
+            font-family: Impact, fantasy;
+            text-align: center;
+            color: white;
+        }
+        a, a:hover, a:focus, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="logo"><h1>Pizzeria</h1> </div>
+
+<div id="nav">
+
+    <div class="buttons"> <a th:href="@{Menu}"> MENU  </a>   </div>
+
+    <div class="buttons"> ZAMÓW PIZZE </div>
+
+    <div class="buttons"> KONTAKT </div>
+
+    <div class="buttons"> OPINIE </div>
+
+
+
+</div>
+
+
+</body>
+</html>
