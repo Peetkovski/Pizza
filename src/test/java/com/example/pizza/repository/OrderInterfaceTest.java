@@ -13,10 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class OrderInterfaceTest {
 
-
-
     @Autowired
     private OrderInterface orderInterface;
+
 
     @Test
     public void addOrders(){
@@ -25,17 +24,26 @@ class OrderInterfaceTest {
 
         Purchases purchases =
                 Purchases.builder()
-                        .name("Tom")
-                        .secondName("KONG")
-                        .address("Jantarowa 67")
-                        .orderPrice(100)
-                        .apartment("12")
+                        .name("Kacper ")
+                        .secondName("Janczyk")
+                        .address("Jantarowa 59")
+                        .orderPrice(69)
+                        .apartment("100")
                         .city("Gdynia")
-                        .phoneNumber("8821221")
-                        .pizzaName("1"+ " | " + "10" + " | " + "3")
+                        .phoneNumber("123456789")
+                        .status("0")
                         .build();
 
         System.out. println(purchases);
         orderInterface.save(purchases);
+    }
+
+
+
+    @Test
+    public void findById(){
+
+
+
     }
 }

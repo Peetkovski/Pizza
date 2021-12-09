@@ -39,6 +39,7 @@ public class PurchaseDataService {
 
         for(Purchases record: records){
             Purchases locationStats = new Purchases();
+            locationStats.setOrderId(record.getOrderId());
             locationStats.setName(record.getName());
             locationStats.setSecondName(record.getSecondName());
             locationStats.setAddress(record.getAddress());
@@ -47,6 +48,7 @@ public class PurchaseDataService {
             locationStats.setOrderPrice(record.getOrderPrice());
             locationStats.setPizzaName(record.getPizzaName());
             locationStats.setPhoneNumber(record.getPhoneNumber());
+            locationStats.setStatus(record.getStatus());
 
             System.out.println(locationStats);
             newStats.add(locationStats);

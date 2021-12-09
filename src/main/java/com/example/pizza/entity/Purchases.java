@@ -1,10 +1,8 @@
 package com.example.pizza.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -31,6 +29,8 @@ public class Purchases {
     private String address;
     private String apartment;
     private String city;
+    @Column(name="status", columnDefinition="String(0) default '0'")
+    private  String status = "0";
 
 
 

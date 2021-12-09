@@ -8,16 +8,25 @@
 
     <style>
 
+        a, a:hover, a:focus, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        table,th, tr{
+            border-style: solid;
+        }
+
         body{
             background-color: #bfc9c8;
         }
         #map {
             border-style: solid;
-            width: 40%;
+            width: 50%;
             float: right;
-            height: 500px;
+            height: 700px;
         }
-            th,tr{
+            th,tr,td{
                 text-align: center;
             }
 
@@ -47,6 +56,7 @@
     <table>
 
         <tr>
+            <th>Id</th>
             <th>Imie</th>
             <th>Nazwsiko</th>
             <th>Adres</th>
@@ -54,29 +64,37 @@
             <th>Numer telefonu</th>
             <th>Cena</th>
             <th>Miasto</th>
-
-        </tr>
-
-
-        <tr th:each="p : ${GetOrder}">
-
-            <td th:text="${p.getName()}"></td>
-            <td th:text="${p.getSecondName()}"></td>
-            <td th:text="${p.getAddress()}"></td>
-            <td th:text="${p.getApartment()}"></td>
-            <td th:text="${p.getPhoneNumber()}"></td>
-            <td th:text="${p.getOrderPrice()}"></td>
-            <td th:text="${p.getCity()}"></td>
+            <th>Delivered</th>
+            <th>Finish</th>
 
         </tr>
 
 
 
+            <tr th:each="p : ${GetOrder}">
+                <td th:text="${p.getOrderId()}"></td>
+                <td th:text="${p.getName()}"></td>
+                <td th:text="${p.getSecondName()}"></td>
+                <td th:text="${p.getAddress()}"></td>
+                <td th:text="${p.getApartment()}"></td>
+                <td th:text="${p.getPhoneNumber()}"></td>
+                <td th:text="${p.getOrderPrice()}"></td>
+                <td th:text="${p.getCity()}"></td>
 
+                <td>
+                    <span style="color: green" th:if="${p.getStatus() == '1'}">Delivered</span>
 
+                    <span style="color: red"  th:if="${p.getStatus() == '0'}">NotDelivered </span>
 
-    </table>
+                </td>
+                <td>
 
+                    <a th:href="@{/managment/order/{getOrderId}(getOrderId = ${p.getOrderId()})}">Click!</a>
+
+                </td>
+
+            </tr>
+        </table>
 </div>
 
 
@@ -93,8 +111,6 @@
 
 </script>
 
-
-
 <script th:inline="javascript" th:each="orders : ${GetOrder}">
     // Initialize map to specified coordinates
 
@@ -103,7 +119,11 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: ['a','b','c']
     }).addTo( map );
-     var query_addr =  [[${orders.getAddress()}]];
+    var city_addr = [[${orders.getCity()}]];
+
+    var query_addr =  [[${orders.getAddress()}]]+ ", " + city_addr + " ";
+
+
     // Get the provider, in this case the OpenStreetMap (OSM) provider.
     var provider = new window.GeoSearch.OpenStreetMapProvider()
     // Query for the address
@@ -112,13 +132,25 @@
     query_promise.then( value => {
         for(i=0;i < value.length; i++){
             // Success!
+            var clientName = [[${orders.getName()}]];
+            var clientSecondName = [[${orders.getSecondName()}]];
+            var clientPhoneNumber = [[${orders.getPhoneNumber()}]];
+            var orderStatus = [[${orders.getStatus()}]];
             var x_coor = value[i].x;
             var y_coor = value[i].y;
             var label = value[i].label;
             // Create a marker for the found coordinates
-            var marker = L.marker([y_coor,x_coor]).addTo(map) // CAREFULL!!! The first position corresponds to the lat (y) and the second to the lon (x)
-            // Add a popup to said marker with the address found by geosearch (not the one from the user)
-            marker.bindPopup("<b>Found location</b><br>"+label).openPopup();
+            if(orderStatus=="0") {
+                var marker = L.marker([y_coor, x_coor]).addTo(map)
+                marker.bindPopup("<b>Found location</b><br>"+label + " IMIE: " + clientName + " NAZWISKO " + clientSecondName + " NUMER TELEFONU: " + clientPhoneNumber ).openPopup();
+                // CAREFULL!!! The first position corresponds to the lat (y) and the second to the lon (x)
+            }
+            if(orderStatus=="1") {
+                var marker = L.marker([y_coor, x_coor]).addTo(map)
+                marker.bindPopup("<b>Found location</b><br>"+label + " IMIE: " + clientName + " NAZWISKO " + clientSecondName + " NUMER TELEFONU: " + clientPhoneNumber + "ZAKONCZONE" ).openPopup();
+
+            }
+                // Add a popup to said marker with the address found by geosearch (not the one from the user)
         };
     }, reason => {
         console.log(reason); // Error!

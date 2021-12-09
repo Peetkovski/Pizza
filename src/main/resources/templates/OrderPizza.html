@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order!</title>
+    <style>
+        body{
+            background-color: #E8E8E8;
+        }
+        #nav{
+            margin-top: 40px;
+            width: 61%;
+            height: 50px;
+            color: black;
+            float: right;
+        }
+        .buttons{
+            font-family: Impact, fantasy;
+            float: left;
+            font-size: 140%;
+            padding-right: 40px;
+        }
+        #logo{
+            width: 30%;
+            font-family: Impact, fantasy;
+            text-align: center;
+            color: black;
+        }
+        a, a:hover, a:focus, a:active {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        tr, td{
+            font-family: Andale Mono, monospace;
+        }
+        table{
+
+        }
+        #menu{
+            width: 30%;
+            margin: auto;
+
+            float: right;
+        }
+        #order{
+            height: 500px;
+            width: 50%;
+            border-style: solid;
+            margin-top: 100px;
+            margin-left: 500px;
+            display: block;
+            text-align: center;
+        }
+
+
+        form
+        {
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="logo"><h1>Pizzeria u Konga</h1> </div>
+
+<div id="nav">
+
+    <div class="buttons"> <a th:href="@{home}"> STRONA GłÓWNA  </a>   </div>
+
+    <div class="buttons"> ZAMÓW PIZZE </div>
+
+    <div class="buttons"> KONTAKT </div>
+
+    <div class="buttons"> OPINIE </div>
+
+
+
+</div>
+
+
+<div id="menu">
+
+
+
+</div>
+
+<div id="order">
+    <form action="#" th:action="@{/order}" th:object="${purchases}" method="post">
+        <label for="fname">First name:</label>
+        <input th:field="*{name}" type="text" id="fname" ><br><br>
+
+        <label for="lname">Last name:</label>
+        <input th:field="*{secondName}" type="text" id="lname" ><br><br>
+
+        <label  for="address">address:</label>
+        <input th:field="*{address}" type="text" id="address"><br><br>
+
+        <label for="apartment">apartment:</label>
+        <input th:field="*{apartment}" type="text" id="apartment"><br><br>
+
+
+        <label for="city">city</label>
+        <input th:field="*{city}" type="text" id="city" ><br><br>
+
+              <label for="number">Phone Number</label>
+        <input th:field="*{phoneNumber}" type="text" id="number"><br><br>
+
+
+
+        <button type="submit">Register</button>
+    </form>
+
+</div>
+</body>
+</html>
