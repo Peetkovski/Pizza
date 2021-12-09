@@ -1,6 +1,7 @@
 # Pizza
 
 For this project I used Spring boot, Spring MVC, Spring Data, Spring Security, Hibernate, Thymeleaf, Leaflet Api, Html
+Only workers have a permission to go into managment page
 
 Overview of panel for worker
 ![1](https://user-images.githubusercontent.com/58399828/145451667-f8fc902e-cdc3-437a-a98a-3d3e9b90247a.JPG)
