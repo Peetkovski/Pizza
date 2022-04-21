@@ -21,10 +21,10 @@ class CustomerInterfaceTest {
                 Customer.builder()
                         .Name("Piotr")
                         .SecondName("Gapinski")
-                        .Address("Jantarowa 69")
-                        .Apartment("12")
+                        .Address("Biała")
+                        .Apartment("15")
                         .City("Gdynia")
-                        .Email("peetkovski@gmail.com")
+                        .Email("piotr@gmail.com")
                         .PostCode("81-187")
                         .Description("Brama numer 2")
                         .build();
