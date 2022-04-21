@@ -25,8 +25,8 @@ class OrderInterfaceTest {
         Purchases purchases =
                 Purchases.builder()
                         .name("Kacper ")
-                        .secondName("Janczyk")
-                        .address("Jantarowa 59")
+                        .secondName("jajxczv")
+                        .address("czerowna 54")
                         .orderPrice(69)
                         .apartment("100")
                         .city("Gdynia")
